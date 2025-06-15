@@ -1,0 +1,23 @@
+server:
+  port: 7083
+
+
+kafka:
+  configurations:
+    bootstrapServers: localhost:9092, localhost:9091, localhost:9093
+    topicName: netflix-topic
+    partitions: 10
+    replication_factor: 5
+    min_in_sync_replicas: 2
+    retries: 3
+    retry_backoff_ms: 200
+    request_timeout_ms: 60000
+    session_timeout_ms: 40000
+    compressionType: gzip
+    isUncleanElection: false
+    ackConfig: all
+    groupId: 1
+    keySerializer: org.apache.kafka.common.serialization.StringSerializer
+    valueSerializer: org.apache.kafka.common.serialization.StringSerializer
+    keyDeSerializer: org.apache.kafka.common.serialization.StringDeserializer
+    valueDeSerializer: org.apache.kafka.common.serialization.StringDeserializer
