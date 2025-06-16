@@ -18,33 +18,33 @@ public record ApplicationConstants(
         @NonNull
         String topicName,
 
-        @Min(2)
+        @Min(1)
         @Max(1000)
         int partitions,
 
-        @Min(2)
+        @Min(3)
         @Max(31)
-        int replication_factor,
+        int replicationFactor,
 
         @Min(1)
         @Max(31)
-        int min_in_sync_replicas,
+        int minInSyncReplicas,
 
         @Min(1)
-        @Max(5)
+        @Max(10)
         int retries,
 
         @Min(100)
         @Max(1500)
-        int retry_backoff_ms,
+        int retryBackOffMs,
 
         @Min(10_000)
         @Max(1_00_000)
-        int request_timeout_ms,
+        int requestTimeOutMs,
 
         @Min(10_000)
         @Max(1_000_000)
-        int session_timeout_ms,
+        int sessionTimeOutMs,
 
         @NonNull
         String compressionType,
@@ -56,6 +56,9 @@ public record ApplicationConstants(
 
         @NonNull
         String groupId,
+
+        @NonNull
+        String offSetReset,
 
         @NonNull
         Class<?> keySerializer,

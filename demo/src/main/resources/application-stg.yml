@@ -7,16 +7,17 @@ kafka:
     bootstrapServers: localhost:9092, localhost:9091, localhost:9093
     topicName: netflix-topic
     partitions: 10
-    replication_factor: 5
-    min_in_sync_replicas: 2
+    replicationFactor: 5
+    minInSyncReplicas: 2
     retries: 3
-    retry_backoff_ms: 200
-    request_timeout_ms: 60000
-    session_timeout_ms: 40000
+    retryBackOffMs: 200
+    requestTimeOutMs: 60000
+    sessionTimeOutMs: 40000
     compressionType: gzip
     isUncleanElection: false
     ackConfig: all
     groupId: 1
+    offSetReset: earliest
     keySerializer: org.apache.kafka.common.serialization.StringSerializer
     valueSerializer: org.apache.kafka.common.serialization.StringSerializer
     keyDeSerializer: org.apache.kafka.common.serialization.StringDeserializer

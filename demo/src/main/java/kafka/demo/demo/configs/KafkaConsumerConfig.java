@@ -17,18 +17,19 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class KafkaConsumerConfig {
 
-    @Autowired
     private final ApplicationConstants applicationConstants;
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
-        Map<String, Object> consumerPropsMap = Map.ofEntries(
+        final Map<String, Object> consumerPropsMap = Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
                         (ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, applicationConstants.bootstrapServers()),
                 new AbstractMap.SimpleEntry<>
                         (ConsumerConfig.GROUP_ID_CONFIG, applicationConstants.groupId()),
                 new AbstractMap.SimpleEntry<>
-                        (ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, applicationConstants.session_timeout_ms()),
+                        (ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, applicationConstants.sessionTimeOutMs()),
+                new AbstractMap.SimpleEntry<>
+                        (ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, applicationConstants.offSetReset()),
                 new AbstractMap.SimpleEntry<>
                         (ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, applicationConstants.keyDeSerializer().getName()),
                 new AbstractMap.SimpleEntry<>

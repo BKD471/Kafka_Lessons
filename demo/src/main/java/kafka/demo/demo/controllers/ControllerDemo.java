@@ -27,8 +27,8 @@ public class ControllerDemo implements IController{
     public ResponseEntity<String> invokeProducer() {
         logger.info("Invoking producer");
         for (int times = 0; times < 100; times++) {
-            int key = times % 10;
-            producerService.sendMessage(String.valueOf(key), "Message " + times);
+            final int key = times % 10;
+            producerService.sendMessage(String.valueOf(key), UUID.randomUUID().toString());
         }
         logger.info("All Messages Published");
         return ResponseEntity.ok("Done");

@@ -31,9 +31,7 @@ public class KafkaProducerConfig {
                 new AbstractMap.SimpleEntry<>
                         (ProducerConfig.COMPRESSION_TYPE_CONFIG, applicationConstants.compressionType()),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.ACKS_CONFIG, applicationConstants.ackConfig()),
-                new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.RETRIES_CONFIG, applicationConstants.retries())
+                        (ProducerConfig.ACKS_CONFIG, applicationConstants.ackConfig())
         );
 
         return new DefaultKafkaProducerFactory<>(producerConfigPropsMap);

@@ -30,24 +30,20 @@ public class ProducerServiceImpl implements IProducerService{
 
     /**
      * This method publishes payload to topic
-     * @param  key - the key of message, it guides which partition the message is written to within a topic
+     * @param key - the key of message, it guides which partition the message is written to within a topic
      * @param message - the message which sis published to topic
      */
     public void sendMessage(final String key, final String message) {
-        CompletableFuture<SendResult<String, String>> completableFuture =
+        final CompletableFuture<SendResult<String, String>> completableFuture =
                 kafkaProducerTemplate.send(applicationConstants.topicName(), key, message);
 
         completableFuture.whenComplete((record, exception) -> {
-            if (exception == null) {
-                // the record was successfully sent without any exception
+            if (null == exception) {
                 final RecordMetadata recordMetadata = record.getRecordMetadata();
-                logger.info("Received new metadata \n" +
-                        "Topic: " + recordMetadata.topic() + " \n" +
-                        "Partition: " + recordMetadata.partition() + " \n" +
-                        "offset: " + recordMetadata.offset() + " \n" +
-                        "TimeStamp: " + recordMetadata.timestamp() + " \n"
-                );
-            } else logger.info(" Error while producing : " + exception.getMessage());
+                logger.info("Received new metadata \nTopic: {} \nPartition: {} \noffset: {} \nTimeStamp: {} \n",
+                        recordMetadata.topic(), recordMetadata.partition(),
+                        recordMetadata.offset(), recordMetadata.timestamp());
+            } else logger.info(" Error while producing : {}", exception.getMessage());
         });
 
     }
