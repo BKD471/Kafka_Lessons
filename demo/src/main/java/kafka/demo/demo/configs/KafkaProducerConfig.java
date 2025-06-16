@@ -3,6 +3,7 @@ package kafka.demo.demo.configs;
 
 import kafka.demo.demo.utils.ApplicationConstants;
 import lombok.RequiredArgsConstructor;
+import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +32,9 @@ public class KafkaProducerConfig {
                 new AbstractMap.SimpleEntry<>
                         (ProducerConfig.COMPRESSION_TYPE_CONFIG, applicationConstants.compressionType()),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.ACKS_CONFIG, applicationConstants.ackConfig())
+                        (ProducerConfig.ACKS_CONFIG, applicationConstants.ackConfig()),
+                new AbstractMap.SimpleEntry<>
+                        (AdminClientConfig.RETRIES_CONFIG, applicationConstants.retries())
         );
 
         return new DefaultKafkaProducerFactory<>(producerConfigPropsMap);

@@ -31,7 +31,7 @@ public record ApplicationConstants(
         int minInSyncReplicas,
 
         @Min(1)
-        @Max(10)
+        @Max(Integer.MAX_VALUE)
         int retries,
 
         @Min(100)

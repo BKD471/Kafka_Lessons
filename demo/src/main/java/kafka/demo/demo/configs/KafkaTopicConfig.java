@@ -25,8 +25,6 @@ public class KafkaTopicConfig {
                 new AbstractMap.SimpleEntry<>
                         (AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, applicationConstants.bootstrapServers()),
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.RETRIES_CONFIG, applicationConstants.retries()),
-                new AbstractMap.SimpleEntry<>
                         (AdminClientConfig.RETRY_BACKOFF_MS_CONFIG, applicationConstants.retryBackOffMs()),
                 new AbstractMap.SimpleEntry<>
                         (AdminClientConfig.REQUEST_TIMEOUT_MS_CONFIG, applicationConstants.requestTimeOutMs())

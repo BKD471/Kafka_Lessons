@@ -33,7 +33,10 @@ so let's configure them one by one
 
 ![img_7.png](img_7.png)
 
+Do not forget to set retries to 3 or some lower numbers, else it will keep on retrying for 2147483647 
+until delivery.timeout.ms expires, and it gives TimeoutException.
 
+![img_23.png](img_23.png)
 
 Let's come to the coding part, In controller we have only two apis for simplicity(for this demo only)
 
@@ -41,7 +44,7 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 2) for polling messages from topic - upon invocation, it creates a listener which keeps polling in every 4 seconds
 
-![img_10.png](img_10.png)
+![img_20.png](img_20.png)
 
 
 # **Scenario 1: We have all 3 brokers/replicas are live, min_insync=2, ack=all & lets produce & consume**
@@ -54,7 +57,7 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 ![img_14.png](img_14.png)
 
-![img_15.png](img_15.png)
+![img_19.png](img_19.png)
 
 # **Conclusion 1: Both Producers & Consumers are working smoothly.**
 
@@ -66,7 +69,7 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 ![img_17.png](img_17.png)
 
-![img_18.png](img_18.png)
+![img_21.png](img_21.png)
 
 
 # **Conclusion 2 : Producers throws NotEnoughReplicasException but Consumer is working smoothly.**
