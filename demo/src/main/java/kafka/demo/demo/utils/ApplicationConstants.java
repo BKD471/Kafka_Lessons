@@ -51,7 +51,6 @@ public record ApplicationConstants(
         @Max(1_000_000)
         int sessionTimeOutMs,
 
-        @NotBlank
         @Pattern(regexp = "^(gzip|snappy|lz4|zstd|none)$",
                 message = "valid values are gzip, snappy, lz4, zstd or give none for default")
         String compressionType,
@@ -59,7 +58,6 @@ public record ApplicationConstants(
         @NotNull
         boolean isUncleanElection,
 
-        @NotBlank
         @Pattern(regexp = "^(1|0|-1|all)$",
                 message = "valid values are 1, 0, -1 or all")
         String ackConfig,
