@@ -25,7 +25,7 @@ so let's configure them one by one
 
 ![img_4.png](img_4.png)
 
-**This is Kafka UI, very helpful for visualization**
+**This is Kafka UI, very helpful for monitoring the cluster**
 
 ![img_5.png](img_5.png)
 
@@ -51,12 +51,15 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 ![img_11.png](img_11.png)
 
+lets produce
 ![img_12.png](img_12.png)
 
+messages got published
 ![img_13.png](img_13.png)
 
+lets start the consumer
 ![img_14.png](img_14.png)
-
+messages are being polled
 ![img_19.png](img_19.png)
 
 # **Conclusion 1: Both Producers & Consumers are working smoothly.**
@@ -67,8 +70,10 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 ![img_16.png](img_16.png)
 
+triggered the publisher api from postman and got NotEnoughReplicasException 
 ![img_17.png](img_17.png)
 
+triggered the consumer/listener api from postman and we are polling smoothly
 ![img_21.png](img_21.png)
 
 
