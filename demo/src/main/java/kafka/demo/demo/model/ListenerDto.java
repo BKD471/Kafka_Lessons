@@ -8,6 +8,8 @@ import org.springframework.validation.annotation.Validated;
 public record ListenerDto(
         @NotNull
         String topic,
+
+        @NotNull
         boolean isStartImmediately
 ) {
 }
