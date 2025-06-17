@@ -13,7 +13,7 @@ kafka:
     retryBackOffMs: 200
     requestTimeOutMs: 60000
     sessionTimeOutMs: 40000
-    compressionType: gzip
+    compressionType: zstd
     isUncleanElection: false
     ackConfig: all
     groupId: 1

@@ -1,12 +1,12 @@
 package kafka.demo.demo.model;
 
 
-import lombok.NonNull;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
 public record ListenerDto(
-        @NonNull
+        @NotNull
         String topic,
         boolean isStartImmediately
 ) {

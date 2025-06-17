@@ -14,11 +14,11 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-public class ControllerDemo implements IController{
+public class ControllerImpl implements IControllerService{
 
     private final IProducerService producerService;
     private final KafkaListenerContainerManagerServiceImpl kafkaListenerContainerManager;
-    private static final Logger logger = LoggerFactory.getLogger(ControllerDemo.class);
+    private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 
     /**
      * This method invokes the producer service, publishes 100 messages to topic

@@ -13,7 +13,7 @@ import java.util.UUID;
 
 
 @RequestMapping("/api/v1/invoke")
-public interface IController {
+public interface IControllerService {
     /**
      * This method invokes the producer service, publishes 10000 messages to topic
      * */
