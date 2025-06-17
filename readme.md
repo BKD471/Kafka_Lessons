@@ -1,11 +1,25 @@
-Hello World, I Created this repo just to give practical demonstration on how we use Kafka in Industries.
+Hello World, 
+I Created this repo just to give practical demonstration on some very fundamental concepts of Kafka.
 
-To follow this lesson make sure you follow this steps
+Kafka's insane high throughput, remarkable low latency, and robust scalability 
+been the top selling point of why we use it in real time data streaming services.
+
+It's no ordinary messaging system unlike it's rivals,
+It's ability to manage distributed data efficiently and reliably, 
+combined with features like fault tolerance and zero downtime makes it ideal for 
+building systems that deals with millions or billions of messages per second.
+
+
+Kafka's overwhelming architecture been a nightmare for me and i had to struggle a lot 
+to understand this beast. so i created this repo, 
+to make it easily understandable with easy to follow hands on activities. Enjoy!!
+
+## _**To follow this lesson make sure you follow this steps**_
 
 1) Make Sure you have Docker Desktop & JDK 21 Installed on your machine.
 2) Get the docker compose file from this repo (I have shared) & set up a multi broker cluster in yr machine.
-   Run the command "docker compose up -d" in the same dir as this docker compose file 
-   It will look like this
+   Run the command "docker compose up -d" in the same dir as this docker compose file, 
+   After every images are pulled & we set up containers and they are running, It will look like this
 
    ![img.png](setup_static/img.png)
 
