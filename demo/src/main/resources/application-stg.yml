@@ -16,7 +16,7 @@ kafka:
     compressionType: gzip
     isUncleanElection: false
     ackConfig: all
-    groupId: 1
+    groupId: group_1
     offSetReset: earliest
     keySerializer: org.apache.kafka.common.serialization.StringSerializer
     valueSerializer: org.apache.kafka.common.serialization.StringSerializer

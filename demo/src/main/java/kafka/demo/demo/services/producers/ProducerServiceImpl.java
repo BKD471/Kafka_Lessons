@@ -11,6 +11,7 @@ import org.springframework.kafka.support.SendResult;
 
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 import org.slf4j.Logger;
@@ -27,7 +28,6 @@ public class ProducerServiceImpl implements IProducerService{
     private final KafkaTemplate<String, String> kafkaProducerTemplate;
     private final ApplicationConstants applicationConstants;
 
-
     /**
      * This method publishes payload to topic
      * @param key - the key of message, it guides which partition the message is written to within a topic
@@ -43,8 +43,10 @@ public class ProducerServiceImpl implements IProducerService{
                 logger.info("Received new metadata \nTopic: {} \nPartition: {} \noffset: {} \nTimeStamp: {} \n",
                         recordMetadata.topic(), recordMetadata.partition(),
                         recordMetadata.offset(), recordMetadata.timestamp());
-            } else logger.info(" Error while producing : {}", exception.getMessage());
+            } else {
+                logger.info(" Error while producing : {}", exception.getMessage());
+                // if producing to topic fails, we can configure a DLQ here to retry again.
+            }
         });
-
     }
 }

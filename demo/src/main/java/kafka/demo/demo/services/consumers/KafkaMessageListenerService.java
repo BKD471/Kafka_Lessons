@@ -15,16 +15,18 @@ public class KafkaMessageListenerService implements MessageListener<String, Stri
 
     /**
      * This method polls messages from topic and logs its detailed info.
+     *
      * @param record - contains info about topic,offset,key,value,partition
      */
     @Override
     public void onMessage(final ConsumerRecord<String, String> record) {
         try {
-            Thread.sleep(4000); // consumer consumes in every 4 seconds
+            Thread.sleep(4000); // consumer polls in every 4 seconds
             log.info("Polled new message:  key: {}, value: {}  from topic: {} partition: {} with offset: {}",
                     record.key(), record.value(),record.topic(),record.partition(),record.offset());
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error(" Error while processing record: ", e);
+            // if processing fails, we can configure a DLQ here to reprocess again.
         }
     }
 }

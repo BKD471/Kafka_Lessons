@@ -33,7 +33,7 @@ You are now good to follow along!!!
 
 so let's configure them one by one
 
-![img_2.png](not_enough_replica_static/img_2.png)
+![img.png](not_enough_replica_static/img.png)
 
 ![img_9.png](not_enough_replica_static/img_9.png)
 
@@ -58,7 +58,9 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 2) for polling messages from topic - upon invocation, it creates a listener which keeps polling in every 4 seconds
 
-![img_20.png](not_enough_replica_static/img_20.png)
+![img.png](not_enough_replica_static/img_producer.png)
+
+![img_1.png](not_enough_replica_static/img_consumer.png)
 
 
 # **Scenario 1: We have all 3 brokers/replicas are live, min_insync=2, ack=all & lets produce & consume**
@@ -71,10 +73,10 @@ lets produce
 messages got published
 ![img_13.png](not_enough_replica_static/img_13.png)
 
-lets start the consumer
-![img_14.png](not_enough_replica_static/img_14.png)
+let's start the consumer
+![img.png](img.png)
 messages are being polled
-![img_19.png](not_enough_replica_static/img_19.png)
+![img.png](not_enough_replica_static/img_polling.png)
 
 # **Conclusion 1: Both Producers & Consumers are working smoothly.**
 
@@ -87,7 +89,7 @@ messages are being polled
 triggered the publisher api from postman and got NotEnoughReplicasException 
 ![img_17.png](not_enough_replica_static/img_17.png)
 
-triggered the consumer/listener api from postman and we are polling smoothly
+but that already ran consumer is still polling smoothly
 ![img_21.png](not_enough_replica_static/img_21.png)
 
 

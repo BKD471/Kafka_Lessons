@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,10 +19,13 @@ public class ControllerImpl implements IControllerService{
 
     private final IProducerService producerService;
     private final KafkaListenerContainerManagerServiceImpl kafkaListenerContainerManager;
+    private final AtomicLong listenerId = new AtomicLong(0);
     private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 
     /**
      * This method invokes the producer service, publishes 100 messages to topic
+     *
+     * @return ResponseEntity<String> - acknowledgement of send with status code
      */
     @Override
     public ResponseEntity<String> invokeProducer() {
@@ -30,8 +34,7 @@ public class ControllerImpl implements IControllerService{
             final int key = times % 10;
             producerService.sendMessage(String.valueOf(key), UUID.randomUUID().toString());
         }
-        logger.info("All Messages Published");
-        return ResponseEntity.ok("Done");
+        return ResponseEntity.ok("Done with Publishing");
     }
 
 
@@ -39,18 +42,22 @@ public class ControllerImpl implements IControllerService{
      * This method when invoked, creates and registers a listener which starts polling messages from topic
      *
      * @param listenerDto - dto object for carry listener information like topic name or isStartImmediately
-     * @return uuid - listenerId
+     * @return ResponseEntity<String> - listenerId with status code
      */
     @Override
-    public UUID createListener(final ListenerDto listenerDto) {
+    public ResponseEntity<String> createListener(final ListenerDto listenerDto) {
         logger.info("Invoking Consumer");
 
-        final UUID listenerId = UUID.randomUUID();
+        final String listenerId = generateListenerId();
         kafkaListenerContainerManager.registerListener(
-                listenerId.toString(),
+                listenerId,
                 listenerDto.topic(),
                 listenerDto.isStartImmediately()
         );
-        return listenerId;
+        return ResponseEntity.ok(String.format("Listener Created with id: %s", listenerId));
+    }
+
+    private String generateListenerId() {
+        return "kafkaListenerId-" + listenerId.getAndIncrement();
     }
 }
