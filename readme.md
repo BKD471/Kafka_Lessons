@@ -25,7 +25,7 @@ to make it easily understandable with easy to follow hands on activities. Enjoy!
 
 
 3) Clone my repo & do a simple maven import
-   ![img_1.png](not_enough_replica_static/img_1.png)
+   ![img_1.png](setup_static/img_1_setup.png)
 
 You are now good to follow along!!!
 
@@ -58,9 +58,9 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 2) for polling messages from topic - upon invocation, it creates a listener which keeps polling in every 4 seconds
 
-![img.png](not_enough_replica_static/img_producer.png)
+![img.png](not_enough_replica_static/img_prod.png)
 
-![img_1.png](not_enough_replica_static/img_consumer.png)
+![img_1.png](not_enough_replica_static/img_cons.png)
 
 
 # **Scenario 1: We have all 3 brokers/replicas are live, min_insync=2, ack=all & lets produce & consume**
@@ -74,7 +74,7 @@ messages got published
 ![img_13.png](not_enough_replica_static/img_13.png)
 
 let's start the consumer
-![img.png](img.png)
+![img.png](not_enough_replica_static/img__cons.png)
 messages are being polled
 ![img.png](not_enough_replica_static/img_polling.png)
 
