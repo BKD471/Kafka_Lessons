@@ -19,7 +19,7 @@ public class ControllerImpl implements IControllerService{
 
     private final IProducerService producerService;
     private final KafkaListenerContainerManagerServiceImpl kafkaListenerContainerManager;
-    private final AtomicLong listenerId = new AtomicLong(0);
+    private final AtomicLong id = new AtomicLong(0);
     private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 
     /**
@@ -58,6 +58,6 @@ public class ControllerImpl implements IControllerService{
     }
 
     private String generateListenerId() {
-        return "kafkaListenerId-" + listenerId.getAndIncrement();
+        return "kafkaListenerId-" + id.getAndIncrement();
     }
 }
