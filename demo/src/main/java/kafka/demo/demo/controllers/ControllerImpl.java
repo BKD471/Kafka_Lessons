@@ -1,8 +1,8 @@
 package kafka.demo.demo.controllers;
 
 
-import kafka.demo.demo.model.ListenerDto;
-import kafka.demo.demo.services.consumers.KafkaListenerContainerManagerServiceImpl;
+import kafka.demo.demo.model.ListenerDTO;
+import kafka.demo.demo.services.consumers.IKafkaListenerContainerManagerService;
 import kafka.demo.demo.services.producers.IProducerService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -15,12 +15,13 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequiredArgsConstructor
-public class ControllerImpl implements IControllerService{
+public class ControllerImpl implements IControllerService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 
     private final IProducerService producerService;
-    private final KafkaListenerContainerManagerServiceImpl kafkaListenerContainerManager;
+    private final IKafkaListenerContainerManagerService kafkaListenerContainerManagerService;
     private final AtomicLong id = new AtomicLong(0);
-    private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 
     /**
      * This method invokes the producer service, publishes 100 messages to topic
@@ -45,11 +46,11 @@ public class ControllerImpl implements IControllerService{
      * @return ResponseEntity<String> - listenerId with status code
      */
     @Override
-    public ResponseEntity<String> createListener(final ListenerDto listenerDto) {
+    public ResponseEntity<String> createListener(final ListenerDTO listenerDto) {
         logger.info("Invoking Consumer");
 
         final String listenerId = generateListenerId();
-        kafkaListenerContainerManager.registerListener(
+        kafkaListenerContainerManagerService.registerListener(
                 listenerId,
                 listenerDto.topic(),
                 listenerDto.isStartImmediately()

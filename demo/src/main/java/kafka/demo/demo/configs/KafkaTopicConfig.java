@@ -43,7 +43,7 @@ public class KafkaTopicConfig {
                 .build();
     }
 
-    private Map<String,String> constructTopicConfigsMap(){
+    private Map<String, String> constructTopicConfigsMap() {
         return Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
                         (TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG, String.valueOf(applicationConstants.minInSyncReplicas())),

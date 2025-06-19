@@ -86,6 +86,8 @@ messages are being polled
 
 ![img_16.png](not_enough_replica_static/img_16.png)
 
+![img.png](not_enough_replica_static/img_disconnected.png)
+
 triggered the publisher api from postman and got NotEnoughReplicasException 
 ![img_17.png](not_enough_replica_static/img_17.png)
 

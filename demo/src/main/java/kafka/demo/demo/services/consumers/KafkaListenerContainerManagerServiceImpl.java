@@ -16,7 +16,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class KafkaListenerContainerManagerServiceImpl implements  IKafkaListenerContainerManagerService {
+public class KafkaListenerContainerManagerServiceImpl implements IKafkaListenerContainerManagerService {
+
     private final KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry;
     private final KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory;
     private final ApplicationConstants applicationConstants;

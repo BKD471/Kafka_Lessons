@@ -7,7 +7,7 @@ import jakarta.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 @Validated
-public record ListenerDto(
+public record ListenerDTO(
         @NotBlank
         @Size(min = 3, max = 255, message = " Min topic name length must be 3, max must be within 255")
         String topic,

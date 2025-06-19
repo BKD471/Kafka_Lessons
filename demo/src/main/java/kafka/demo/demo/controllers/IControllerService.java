@@ -2,7 +2,7 @@ package kafka.demo.demo.controllers;
 
 
 import jakarta.validation.Valid;
-import kafka.demo.demo.model.ListenerDto;
+import kafka.demo.demo.model.ListenerDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,5 +27,5 @@ public interface IControllerService {
      * @return ResponseEntity<String> - listenerId with status code
      */
     @GetMapping("/consume")
-    ResponseEntity<String> createListener(@Valid @RequestBody final ListenerDto listenerDto);
+    ResponseEntity<String> createListener(@Valid @RequestBody final ListenerDTO listenerDto);
 }

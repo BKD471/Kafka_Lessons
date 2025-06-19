@@ -23,7 +23,7 @@ public class KafkaMessageListenerService implements MessageListener<String, Stri
         try {
             Thread.sleep(4000); // consumer polls in every 4 seconds
             log.info("Polled new message:  key: {}, value: {}  from topic: {} partition: {} with offset: {}",
-                    record.key(), record.value(),record.topic(),record.partition(),record.offset());
+                    record.key(), record.value(), record.topic(), record.partition(), record.offset());
         } catch (Exception e) {
             log.error(" Error while processing record: ", e);
             // if processing fails, we can configure a DLQ here to reprocess again.

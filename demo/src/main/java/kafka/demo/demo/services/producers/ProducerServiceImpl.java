@@ -11,8 +11,6 @@ import org.springframework.kafka.support.SendResult;
 
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ProducerServiceImpl implements IProducerService{
+public class ProducerServiceImpl implements IProducerService {
 
     private static final Logger logger = LoggerFactory.getLogger(ProducerServiceImpl.class);
 
@@ -30,7 +28,8 @@ public class ProducerServiceImpl implements IProducerService{
 
     /**
      * This method publishes payload to topic
-     * @param key - the key of message, it guides which partition the message is written to within a topic
+     *
+     * @param key     - the key of message, it guides which partition the message is written to within a topic
      * @param message - the message which sis published to topic
      */
     public void sendMessage(final String key, final String message) {
