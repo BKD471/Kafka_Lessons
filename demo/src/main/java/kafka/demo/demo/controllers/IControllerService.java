@@ -26,6 +26,6 @@ public interface IControllerService {
      * @param listenerDto - dto object for carry listener information like topic name or isStartImmediately
      * @return ResponseEntity<String> - listenerId with status code
      */
-    @GetMapping("/v1/consume")
+    @PostMapping("/v1/consume")
     ResponseEntity<String> createListener(@Valid @RequestBody final ListenerDTO listenerDto);
 }

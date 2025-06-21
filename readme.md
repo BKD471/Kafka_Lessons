@@ -58,9 +58,9 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 2) for polling messages from topic - upon invocation, it creates a listener which keeps polling in every 4 seconds
 
-![img.png](not_enough_replica_static/img_prod.png)
+![img.png](not_enough_replica_static/img_produces.png)
 
-![img_1.png](not_enough_replica_static/img_cons.png)
+![img.png](not_enough_replica_static/img_conss.png)
 
 
 # **Scenario 1: We have all 3 brokers/replicas are live, min_insync=2, ack=all & lets produce & consume**
@@ -68,13 +68,13 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 ![img_11.png](not_enough_replica_static/img_11.png)
 
 lets produce
-![img.png](setup_static/img_produce_api.png)
+![img.png](not_enough_replica_static/img_produce.png)
 
 messages got published
 ![img_13.png](not_enough_replica_static/img_13.png)
 
 let's start the consumer
-![img.png](not_enough_replica_static/img_consumer_api.png)
+![img.png](not_enough_replica_static/img_consumes.png)
 
 messages are being polled
 ![img.png](not_enough_replica_static/img_polling.png)

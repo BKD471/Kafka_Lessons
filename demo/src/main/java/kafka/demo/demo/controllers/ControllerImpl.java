@@ -7,6 +7,7 @@ import kafka.demo.demo.services.producers.IProducerService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,7 +36,7 @@ public class ControllerImpl implements IControllerService {
             final int key = times % 10;
             producerService.sendMessage(String.valueOf(key), UUID.randomUUID().toString());
         }
-        return ResponseEntity.ok("Done with Publishing");
+        return new ResponseEntity<>("Done with Publishing", HttpStatus.ACCEPTED);
     }
 
 
@@ -55,7 +56,7 @@ public class ControllerImpl implements IControllerService {
                 listenerDto.topic(),
                 listenerDto.isStartImmediately()
         );
-        return ResponseEntity.ok(String.format("Listener Created with id: %s", listenerId));
+        return new ResponseEntity<>(String.format("Listener Created with id: %s", listenerId), HttpStatus.ACCEPTED);
     }
 
     private String generateListenerId() {
