@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-@RequestMapping("/api/v1/invoke")
+@RequestMapping("/api/invoke")
 public interface IControllerService {
     /**
      * This method invokes the producer service, publishes 10000 messages to topic
      *
      * @return ResponseEntity<String> - acknowledgement of send with status code
      */
-    @PostMapping("/publishAll")
+    @PostMapping("/v1/publishAll")
     ResponseEntity<String> invokeProducer();
 
     /**
@@ -26,6 +26,6 @@ public interface IControllerService {
      * @param listenerDto - dto object for carry listener information like topic name or isStartImmediately
      * @return ResponseEntity<String> - listenerId with status code
      */
-    @GetMapping("/consume")
+    @GetMapping("/v1/consume")
     ResponseEntity<String> createListener(@Valid @RequestBody final ListenerDTO listenerDto);
 }
