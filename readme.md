@@ -68,13 +68,14 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 ![img_11.png](not_enough_replica_static/img_11.png)
 
 lets produce
-![img_12.png](not_enough_replica_static/img_12.png)
+![img.png](setup_static/img_produce_api.png)
 
 messages got published
 ![img_13.png](not_enough_replica_static/img_13.png)
 
 let's start the consumer
-![img.png](not_enough_replica_static/img__cons.png)
+![img.png](not_enough_replica_static/img_consumer_api.png)
+
 messages are being polled
 ![img.png](not_enough_replica_static/img_polling.png)
 
