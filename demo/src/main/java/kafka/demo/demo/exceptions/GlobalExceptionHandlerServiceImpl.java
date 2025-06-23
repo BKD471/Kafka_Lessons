@@ -21,9 +21,11 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
     private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 
     /**
+     * This method handles any invalidation in request dto fields
+     *
      * @param exception - MethodArgumentNotValidException is being thrown
-     * @return ResponseEntity<Map < String, String>> - map containing error details
-     */
+     * @return ResponseEntity<Map<String, String>> - map containing error details
+     * */
     @Override
     public ResponseEntity<Map<String, String>> handleMethodArgumentNotValid(final MethodArgumentNotValidException exception) {
         final Map<String, String> errors = new HashMap<>();
@@ -38,10 +40,12 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
     }
 
     /**
-     * @param exception  - Exception is being thrown
+     * This method handles any generic exception that's being thrown from codebase.
+     *
+     * @param exception - Exception is being thrown
      * @param webRequest - web request
-     * @return ResponseEntity<Map < String, String>> - map containing error details
-     */
+     * @return ResponseEntity<Map<String, String>> - map containing error details
+     * */
     @Override
     public ResponseEntity<ErrorDetails> handleGenericException(final Exception exception, final WebRequest webRequest) {
         final ErrorDetails error =

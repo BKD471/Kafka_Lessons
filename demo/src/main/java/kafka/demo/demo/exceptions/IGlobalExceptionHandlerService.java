@@ -11,6 +11,7 @@ import java.util.Map;
 public interface IGlobalExceptionHandlerService {
 
     /**
+     * This method handles any invalidation in request dto fields
      *
      * @param exception - MethodArgumentNotValidException is being thrown
      * @return ResponseEntity<Map<String, String>> - map containing error details
@@ -19,6 +20,7 @@ public interface IGlobalExceptionHandlerService {
     ResponseEntity<Map<String, String>> handleMethodArgumentNotValid(final MethodArgumentNotValidException exception);
 
     /**
+     * This method handles any generic exception that's being thrown from codebase.
      *
      * @param exception - Exception is being thrown
      * @param webRequest - web request
