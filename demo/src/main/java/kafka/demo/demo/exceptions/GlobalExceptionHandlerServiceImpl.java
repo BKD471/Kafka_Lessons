@@ -32,10 +32,9 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
     ) {
         final Map<String, String> errors = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
+            final String fieldName = ((FieldError) error).getField();
+            final String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
-
         });
         logger.error(String.format("<================ %s >", exception.getMessage()));
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
@@ -46,7 +45,7 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
      *
      * @param exception - catches any generic Exception
      * @param webRequest - web request
-     * @return ResponseEntity<Map<String, String>> - map containing error details
+     * @return ResponseEntity<ErrorDetails> - error details object with status code
      * */
     @Override
     public ResponseEntity<ErrorDetails> handleGenericException(

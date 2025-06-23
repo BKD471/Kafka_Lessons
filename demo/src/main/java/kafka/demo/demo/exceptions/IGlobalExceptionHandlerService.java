@@ -26,7 +26,7 @@ public interface IGlobalExceptionHandlerService {
      *
      * @param exception - catches any generic Exception
      * @param webRequest - web request
-     * @return ResponseEntity<Map<String, String>> - map containing error details
+     * @return ResponseEntity<ErrorDetails> - error details object with status code
      * */
     @ExceptionHandler(Exception.class)
     ResponseEntity<ErrorDetails> handleGenericException(
