@@ -4,6 +4,7 @@ package kafka.demo.demo.controllers;
 import kafka.demo.demo.dto.ListenerDTO;
 import kafka.demo.demo.services.consumers.IKafkaListenerContainerManagerService;
 import kafka.demo.demo.services.producers.IProducerService;
+import kafka.demo.demo.utils.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ public class ControllerImpl implements IControllerService {
 
     private final IProducerService producerService;
     private final IKafkaListenerContainerManagerService kafkaListenerContainerManagerService;
+    private final ApplicationProperties applicationProperties;
     private final AtomicLong id = new AtomicLong(0);
 
 
@@ -33,8 +35,9 @@ public class ControllerImpl implements IControllerService {
     @Override
     public ResponseEntity<String> invokeProducer() {
         logger.info("Invoking producer");
+        final int total_partitions = applicationProperties.partitions();
         for (int times = 0; times < 10000; times++) {
-            final int key = times % 10;
+            final int key = times % total_partitions;
             producerService.sendMessage(String.valueOf(key), UUID.randomUUID().toString());
         }
         return new ResponseEntity<>("Done with Publishing", HttpStatus.ACCEPTED);

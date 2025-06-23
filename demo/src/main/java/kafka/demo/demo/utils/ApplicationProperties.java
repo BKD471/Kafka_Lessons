@@ -15,7 +15,7 @@ import java.util.List;
 
 @Validated
 @ConfigurationProperties(prefix = "kafka.configurations")
-public record ApplicationConstants(
+public record ApplicationProperties(
         @NotEmpty
         List<String> bootstrapServers,
 

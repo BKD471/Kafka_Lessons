@@ -1,7 +1,7 @@
 package kafka.demo.demo.configs;
 
 
-import kafka.demo.demo.utils.ApplicationConstants;
+import kafka.demo.demo.utils.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -18,23 +18,23 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class KafkaProducerConfig {
 
-    private final ApplicationConstants applicationConstants;
+    private final ApplicationProperties applicationProperties;
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
         final Map<String, Object> producerConfigPropsMap = Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, applicationConstants.bootstrapServers()),
+                        (ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, applicationProperties.bootstrapServers()),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, applicationConstants.keySerializer().getName()),
+                        (ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, applicationProperties.keySerializer().getName()),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, applicationConstants.valueSerializer().getName()),
+                        (ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, applicationProperties.valueSerializer().getName()),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.COMPRESSION_TYPE_CONFIG, applicationConstants.compressionType()),
+                        (ProducerConfig.COMPRESSION_TYPE_CONFIG, applicationProperties.compressionType()),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.ACKS_CONFIG, applicationConstants.ackConfig()),
+                        (ProducerConfig.ACKS_CONFIG, applicationProperties.ackConfig()),
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.RETRIES_CONFIG, applicationConstants.retries())
+                        (AdminClientConfig.RETRIES_CONFIG, applicationProperties.retries())
         );
 
         return new DefaultKafkaProducerFactory<>(producerConfigPropsMap);

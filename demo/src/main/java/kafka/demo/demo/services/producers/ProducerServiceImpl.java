@@ -1,7 +1,7 @@
 package kafka.demo.demo.services.producers;
 
 
-import kafka.demo.demo.utils.ApplicationConstants;
+import kafka.demo.demo.utils.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 
 
@@ -24,7 +24,7 @@ public class ProducerServiceImpl implements IProducerService {
     private static final Logger logger = LoggerFactory.getLogger(ProducerServiceImpl.class);
 
     private final KafkaTemplate<String, String> kafkaProducerTemplate;
-    private final ApplicationConstants applicationConstants;
+    private final ApplicationProperties applicationProperties;
 
     /**
      * This method publishes payload to topic
@@ -35,7 +35,7 @@ public class ProducerServiceImpl implements IProducerService {
     @Override
     public void sendMessage(final String key, final String message) {
         final CompletableFuture<SendResult<String, String>> completableFuture =
-                kafkaProducerTemplate.send(applicationConstants.topicName(), key, message);
+                kafkaProducerTemplate.send(applicationProperties.topicName(), key, message);
 
         completableFuture.whenComplete((record, exception) -> {
             if (null == exception) {

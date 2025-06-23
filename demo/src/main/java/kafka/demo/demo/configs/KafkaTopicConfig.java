@@ -1,6 +1,6 @@
 package kafka.demo.demo.configs;
 
-import kafka.demo.demo.utils.ApplicationConstants;
+import kafka.demo.demo.utils.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -17,17 +17,17 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class KafkaTopicConfig {
 
-    private final ApplicationConstants applicationConstants;
+    private final ApplicationProperties applicationProperties;
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
         final Map<String, Object> configsMap = Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, applicationConstants.bootstrapServers()),
+                        (AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, applicationProperties.bootstrapServers()),
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.RETRY_BACKOFF_MS_CONFIG, applicationConstants.retryBackOffMs()),
+                        (AdminClientConfig.RETRY_BACKOFF_MS_CONFIG, applicationProperties.retryBackOffMs()),
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.REQUEST_TIMEOUT_MS_CONFIG, applicationConstants.requestTimeOutMs())
+                        (AdminClientConfig.REQUEST_TIMEOUT_MS_CONFIG, applicationProperties.requestTimeOutMs())
         );
 
         return new KafkaAdmin(configsMap);
@@ -36,19 +36,19 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic topic() {
         return TopicBuilder
-                .name(applicationConstants.topicName())
+                .name(applicationProperties.topicName())
                 .configs(constructTopicConfigsMap())
-                .partitions(applicationConstants.partitions())
-                .replicas(applicationConstants.replicationFactor())
+                .partitions(applicationProperties.partitions())
+                .replicas(applicationProperties.replicationFactor())
                 .build();
     }
 
     private Map<String, String> constructTopicConfigsMap() {
         return Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
-                        (TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG, String.valueOf(applicationConstants.minInSyncReplicas())),
+                        (TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG, String.valueOf(applicationProperties.minInSyncReplicas())),
                 new AbstractMap.SimpleEntry<>
-                        (TopicConfig.UNCLEAN_LEADER_ELECTION_ENABLE_CONFIG, String.valueOf(applicationConstants.isUncleanElection()))
+                        (TopicConfig.UNCLEAN_LEADER_ELECTION_ENABLE_CONFIG, String.valueOf(applicationProperties.isUncleanElection()))
         );
     }
 }

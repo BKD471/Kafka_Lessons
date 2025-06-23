@@ -1,6 +1,6 @@
 package kafka.demo.demo.services.consumers;
 
-import kafka.demo.demo.utils.ApplicationConstants;
+import kafka.demo.demo.utils.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
@@ -20,7 +20,7 @@ public class KafkaListenerContainerManagerServiceImpl implements IKafkaListenerC
 
     private final KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry;
     private final KafkaListenerContainerFactory<ConcurrentMessageListenerContainer<String, String>> kafkaListenerContainerFactory;
-    private final ApplicationConstants applicationConstants;
+    private final ApplicationProperties applicationProperties;
 
     /**
      * This method creates and registers listeners to the topic,
@@ -42,7 +42,7 @@ public class KafkaListenerContainerManagerServiceImpl implements IKafkaListenerC
     private KafkaListenerEndpoint createKafkaListenerEndpoint(final String listenerId, final String topic) {
         MethodKafkaListenerEndpoint<String, String> kafkaListenerEndpoint = new MethodKafkaListenerEndpoint<>();
         kafkaListenerEndpoint.setId(listenerId);
-        kafkaListenerEndpoint.setGroupId(applicationConstants.groupId());
+        kafkaListenerEndpoint.setGroupId(applicationProperties.groupId());
         kafkaListenerEndpoint.setAutoStartup(true);
         kafkaListenerEndpoint.setTopics(topic);
         kafkaListenerEndpoint.setMessageHandlerMethodFactory(new DefaultMessageHandlerMethodFactory());
