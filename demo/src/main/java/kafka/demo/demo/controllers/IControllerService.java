@@ -2,7 +2,7 @@ package kafka.demo.demo.controllers;
 
 
 import jakarta.validation.Valid;
-import kafka.demo.demo.model.ListenerDTO;
+import kafka.demo.demo.dto.ListenerDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

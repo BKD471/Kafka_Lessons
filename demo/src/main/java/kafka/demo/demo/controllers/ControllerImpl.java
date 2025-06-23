@@ -1,7 +1,7 @@
 package kafka.demo.demo.controllers;
 
 
-import kafka.demo.demo.model.ListenerDTO;
+import kafka.demo.demo.dto.ListenerDTO;
 import kafka.demo.demo.services.consumers.IKafkaListenerContainerManagerService;
 import kafka.demo.demo.services.producers.IProducerService;
 import lombok.RequiredArgsConstructor;
@@ -15,20 +15,15 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
+@RequiredArgsConstructor
 public class ControllerImpl implements IControllerService {
 
     private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 
     private final IProducerService producerService;
     private final IKafkaListenerContainerManagerService kafkaListenerContainerManagerService;
-    private final AtomicLong id;
+    private final AtomicLong id = new AtomicLong(0);
 
-    public ControllerImpl(final IProducerService producerService,
-                          final IKafkaListenerContainerManagerService kafkaListenerContainerManagerService) {
-        this.producerService = producerService;
-        this.kafkaListenerContainerManagerService = kafkaListenerContainerManagerService;
-        this.id = new AtomicLong(0);
-    }
 
     /**
      * This method invokes the producer service, publishes 100 messages to topic

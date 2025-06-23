@@ -1,4 +1,4 @@
-package kafka.demo.demo.model;
+package kafka.demo.demo.dto;
 
 
 import jakarta.validation.constraints.NotBlank;
@@ -12,7 +12,7 @@ public record ListenerDTO(
         @Size(min = 3, max = 255, message = " Min topic name length must be 3, max must be within 255")
         String topic,
 
-        @NotNull
-        boolean isStartImmediately
+        @NotNull(message = "Please provide values for isStartImmediately")
+        Boolean isStartImmediately
 ) {
 }
