@@ -56,7 +56,7 @@ Let's come to the coding part, In controller we have only two apis for simplicit
 
 1) for producing messages to topic - upon invocation, it produces 100 messages to topic. 
 
-2) for polling messages from topic - upon invocation, it creates a listener which keeps polling in every 4 seconds
+2) for polling messages from topic - upon invocation, it creates a listener which keeps logging in every 4 seconds
 
 ![img.png](not_enough_replica_static/img_produces.png)
 
