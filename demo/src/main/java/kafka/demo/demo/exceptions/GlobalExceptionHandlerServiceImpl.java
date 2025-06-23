@@ -18,7 +18,7 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandlerService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandlerServiceImpl.class);
 
     /**
      * This method handles any invalidation in request dto fields
