@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    protected ResponseEntity<Map<String, String>> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex) {
+    public  ResponseEntity<Map<String, String>> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex) {
         final Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
