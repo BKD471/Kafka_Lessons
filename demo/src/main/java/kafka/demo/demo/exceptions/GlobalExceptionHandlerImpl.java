@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler implements IGlobalExceptionHandlerService {
+public class GlobalExceptionHandlerImpl implements IGlobalExceptionHandlerService {
 
     private static final Logger logger = LoggerFactory.getLogger(ControllerImpl.class);
 

@@ -25,7 +25,7 @@ to make it easily understandable with easy to follow hands on activities. Enjoy!
 
 
 3) Clone my repo & do a simple maven import
-   ![img.png](setup_static/img_setup.png)
+   ![img.png](setup_static/img_setups.png)
 
 You are now good to follow along!!!
 
