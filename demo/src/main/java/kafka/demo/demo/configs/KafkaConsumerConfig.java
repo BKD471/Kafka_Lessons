@@ -22,19 +22,36 @@ public class KafkaConsumerConfig {
     public ConsumerFactory<String, String> consumerFactory() {
         final Map<String, Object> consumerPropsMap = Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
-                        (ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, applicationProperties.bootstrapServers()),
+                        (
+                                ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                                applicationProperties.bootstrapServers()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ConsumerConfig.GROUP_ID_CONFIG, applicationProperties.groupId()),
+                        (
+                                ConsumerConfig.GROUP_ID_CONFIG,
+                                applicationProperties.groupId()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, applicationProperties.sessionTimeOutMs()),
+                        (
+                                ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG,
+                                applicationProperties.sessionTimeOutMs()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, applicationProperties.offSetReset()),
+                        (
+                                ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,
+                                applicationProperties.offSetReset()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, applicationProperties.keyDeSerializer().getName()),
+                        (
+                                ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
+                                applicationProperties.keyDeSerializer().getName()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, applicationProperties.valueDeSerializer().getName())
+                        (
+                                ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
+                                applicationProperties.valueDeSerializer().getName()
+                        )
         );
-
         return new DefaultKafkaConsumerFactory<>(consumerPropsMap);
     }
 

@@ -41,7 +41,10 @@ public class ControllerImpl implements IControllerService {
             final String message = UUID.randomUUID().toString();
             producerService.sendMessage(key, message);
         }
-        return new ResponseEntity<>("Done with Publishing", HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(
+                "Done with Publishing",
+                HttpStatus.ACCEPTED
+        );
     }
 
 
@@ -61,7 +64,10 @@ public class ControllerImpl implements IControllerService {
                 listenerDto.topic(),
                 listenerDto.isStartImmediately()
         );
-        return new ResponseEntity<>(String.format("Listener Created with id: %s", listenerId), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(
+                String.format("Listener Created with id: %s", listenerId),
+                HttpStatus.ACCEPTED
+        );
     }
 
     private String generateListenerId() {

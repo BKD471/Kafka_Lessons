@@ -24,19 +24,36 @@ public class KafkaProducerConfig {
     public ProducerFactory<String, String> producerFactory() {
         final Map<String, Object> producerConfigPropsMap = Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, applicationProperties.bootstrapServers()),
+                        (
+                                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
+                                applicationProperties.bootstrapServers()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, applicationProperties.keySerializer().getName()),
+                        (
+                                ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
+                                applicationProperties.keySerializer().getName()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, applicationProperties.valueSerializer().getName()),
+                        (
+                                ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
+                                applicationProperties.valueSerializer().getName()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.COMPRESSION_TYPE_CONFIG, applicationProperties.compressionType()),
+                        (
+                                ProducerConfig.COMPRESSION_TYPE_CONFIG,
+                                applicationProperties.compressionType()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (ProducerConfig.ACKS_CONFIG, applicationProperties.ackConfig()),
+                        (
+                                ProducerConfig.ACKS_CONFIG,
+                                applicationProperties.ackConfig()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.RETRIES_CONFIG, applicationProperties.retries())
+                        (
+                                AdminClientConfig.RETRIES_CONFIG,
+                                applicationProperties.retries()
+                        )
         );
-
         return new DefaultKafkaProducerFactory<>(producerConfigPropsMap);
     }
 

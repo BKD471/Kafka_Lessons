@@ -24,7 +24,8 @@ public class KafkaListenerContainerManagerServiceImpl implements IKafkaListenerC
 
     /**
      * This method creates and registers listeners to the topic,
-     * we use it to poll messages from topic on demand dynamically, you can try using KafkaListener as alternative
+     * we use it to poll messages from topic on demand dynamically,
+     * you can try using KafkaListener as alternative
      *
      * @param listenerId       - listener id
      * @param topic            - topic name from which we want to poll
@@ -32,22 +33,39 @@ public class KafkaListenerContainerManagerServiceImpl implements IKafkaListenerC
      */
     @SneakyThrows
     @Override
-    public void registerListener(final String listenerId, final String topic, final boolean startImmediately) {
+    public void registerListener(
+            final String listenerId,
+            final String topic,
+            final boolean startImmediately
+    ) {
         kafkaListenerEndpointRegistry.registerListenerContainer(
-                createKafkaListenerEndpoint(listenerId, topic), kafkaListenerContainerFactory, startImmediately
+                createKafkaListenerEndpoint(listenerId, topic),
+                kafkaListenerContainerFactory,
+                startImmediately
         );
     }
 
     @SneakyThrows
-    private KafkaListenerEndpoint createKafkaListenerEndpoint(final String listenerId, final String topic) {
-        MethodKafkaListenerEndpoint<String, String> kafkaListenerEndpoint = new MethodKafkaListenerEndpoint<>();
+    private KafkaListenerEndpoint createKafkaListenerEndpoint(
+            final String listenerId,
+            final String topic
+    ) {
+        MethodKafkaListenerEndpoint<String, String> kafkaListenerEndpoint =
+                new MethodKafkaListenerEndpoint<>();
         kafkaListenerEndpoint.setId(listenerId);
         kafkaListenerEndpoint.setGroupId(applicationProperties.groupId());
         kafkaListenerEndpoint.setAutoStartup(true);
         kafkaListenerEndpoint.setTopics(topic);
-        kafkaListenerEndpoint.setMessageHandlerMethodFactory(new DefaultMessageHandlerMethodFactory());
+        kafkaListenerEndpoint.setMessageHandlerMethodFactory(
+                new DefaultMessageHandlerMethodFactory()
+        );
         kafkaListenerEndpoint.setBean(new KafkaMessageListenerService());
-        kafkaListenerEndpoint.setMethod(KafkaMessageListenerService.class.getMethod("onMessage", ConsumerRecord.class));
+        kafkaListenerEndpoint.setMethod(
+                KafkaMessageListenerService.class.getMethod(
+                        "onMessage",
+                        ConsumerRecord.class
+                )
+        );
         return kafkaListenerEndpoint;
     }
 }

@@ -23,13 +23,21 @@ public class KafkaTopicConfig {
     public KafkaAdmin kafkaAdmin() {
         final Map<String, Object> configsMap = Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, applicationProperties.bootstrapServers()),
+                        (
+                                AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG,
+                                applicationProperties.bootstrapServers()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.RETRY_BACKOFF_MS_CONFIG, applicationProperties.retryBackOffMs()),
+                        (
+                                AdminClientConfig.RETRY_BACKOFF_MS_CONFIG,
+                                applicationProperties.retryBackOffMs()
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (AdminClientConfig.REQUEST_TIMEOUT_MS_CONFIG, applicationProperties.requestTimeOutMs())
+                        (
+                                AdminClientConfig.REQUEST_TIMEOUT_MS_CONFIG,
+                                applicationProperties.requestTimeOutMs()
+                        )
         );
-
         return new KafkaAdmin(configsMap);
     }
 
@@ -46,9 +54,15 @@ public class KafkaTopicConfig {
     private Map<String, String> constructTopicConfigsMap() {
         return Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
-                        (TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG, String.valueOf(applicationProperties.minInSyncReplicas())),
+                        (
+                                TopicConfig.MIN_IN_SYNC_REPLICAS_CONFIG,
+                                String.valueOf(applicationProperties.minInSyncReplicas())
+                        ),
                 new AbstractMap.SimpleEntry<>
-                        (TopicConfig.UNCLEAN_LEADER_ELECTION_ENABLE_CONFIG, String.valueOf(applicationProperties.isUncleanElection()))
+                        (
+                                TopicConfig.UNCLEAN_LEADER_ELECTION_ENABLE_CONFIG,
+                                String.valueOf(applicationProperties.isUncleanElection())
+                        )
         );
     }
 }

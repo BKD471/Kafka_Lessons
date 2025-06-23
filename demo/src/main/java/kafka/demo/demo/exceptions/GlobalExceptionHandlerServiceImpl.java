@@ -17,7 +17,8 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandlerService {
 
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandlerServiceImpl.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(GlobalExceptionHandlerServiceImpl.class);
 
     /**
      * This method handles any invalidation in request dto fields
@@ -26,7 +27,9 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
      * @return ResponseEntity<Map<String, String>> - map containing error details
      * */
     @Override
-    public ResponseEntity<Map<String, String>> handleMethodArgumentNotValid(final MethodArgumentNotValidException exception) {
+    public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(
+            final MethodArgumentNotValidException exception
+    ) {
         final Map<String, String> errors = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
@@ -46,9 +49,17 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
      * @return ResponseEntity<Map<String, String>> - map containing error details
      * */
     @Override
-    public ResponseEntity<ErrorDetails> handleGenericException(final Exception exception, final WebRequest webRequest) {
+    public ResponseEntity<ErrorDetails> handleGenericException(
+            final Exception exception,
+            final WebRequest webRequest
+    ) {
         final ErrorDetails error =
-                new ErrorDetails(LocalTime.now(), exception.getMessage(), webRequest.getDescription(false));
+                new ErrorDetails
+                        (
+                                LocalTime.now(),
+                                exception.getMessage(),
+                                webRequest.getDescription(false)
+                        );
         logger.error(String.format("<================ %s >", exception.getMessage()));
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -9,5 +9,5 @@ public interface IProducerService {
      * @param key - key of payload
      * @param message - the message which sis published to topic
      * */
-    void sendMessage(final String key,final String message);
+    void sendMessage(final String key, final String message);
 }

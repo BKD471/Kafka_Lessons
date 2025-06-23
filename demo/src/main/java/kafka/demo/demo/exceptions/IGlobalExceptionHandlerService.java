@@ -17,7 +17,9 @@ public interface IGlobalExceptionHandlerService {
      * @return ResponseEntity<Map<String, String>> - map containing error details
      * */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    ResponseEntity<Map<String, String>> handleMethodArgumentNotValid(final MethodArgumentNotValidException exception);
+    ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(
+            final MethodArgumentNotValidException exception
+    );
 
     /**
      * This method handles any generic exception that's being thrown from codebase.
@@ -27,5 +29,8 @@ public interface IGlobalExceptionHandlerService {
      * @return ResponseEntity<Map<String, String>> - map containing error details
      * */
     @ExceptionHandler(Exception.class)
-    ResponseEntity<ErrorDetails> handleGenericException(final Exception exception, final WebRequest webRequest);
+    ResponseEntity<ErrorDetails> handleGenericException(
+            final Exception exception,
+            final WebRequest webRequest
+    );
 }

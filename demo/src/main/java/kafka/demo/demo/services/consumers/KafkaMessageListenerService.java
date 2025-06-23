@@ -22,11 +22,13 @@ public class KafkaMessageListenerService implements MessageListener<String, Stri
     public void onMessage(final ConsumerRecord<String, String> record) {
         try {
             Thread.sleep(4000); // consumer logs in every 4 seconds
-            log.info("Polled new message:  key: {}, value: {}  from topic: {} partition: {} with offset: {}",
-                    record.key(), record.value(), record.topic(), record.partition(), record.offset());
+            log.info("Polled new message:  key: {}, value: {}  from topic: {} " +
+                            "partition: {} with offset: {}",
+                    record.key(), record.value(), record.topic(),
+                    record.partition(), record.offset());
         } catch (Exception e) {
             log.error(" Error while processing record: ", e);
-            // if processing fails, we can configure a DLQ here to reprocess again.
+            // if processing fails, configure a DLQ here to re-process again.
         }
     }
 }

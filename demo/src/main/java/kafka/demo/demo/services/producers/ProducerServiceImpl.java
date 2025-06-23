@@ -35,17 +35,22 @@ public class ProducerServiceImpl implements IProducerService {
     @Override
     public void sendMessage(final String key, final String message) {
         final CompletableFuture<SendResult<String, String>> completableFuture =
-                kafkaProducerTemplate.send(applicationProperties.topicName(), key, message);
+                kafkaProducerTemplate.send(
+                        applicationProperties.topicName(),
+                        key,
+                        message
+                );
 
         completableFuture.whenComplete((record, exception) -> {
             if (null == exception) {
                 final RecordMetadata recordMetadata = record.getRecordMetadata();
-                logger.info("Received new metadata \nTopic: {} \nPartition: {} \noffset: {} \nTimeStamp: {} \n",
+                logger.info("Received new metadata \nTopic: {} \nPartition: " +
+                                "{} \noffset: {} \nTimeStamp: {} \n",
                         recordMetadata.topic(), recordMetadata.partition(),
                         recordMetadata.offset(), recordMetadata.timestamp());
             } else {
                 logger.info(" Error while producing : {}", exception.getMessage());
-                // if producing to topic fails, we can configure a DLQ here to retry again.
+                // if producing to topic fails, configure a DLQ here to retry again.
             }
         });
     }
