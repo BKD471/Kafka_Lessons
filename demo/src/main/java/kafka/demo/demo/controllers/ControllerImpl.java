@@ -37,8 +37,9 @@ public class ControllerImpl implements IControllerService {
         logger.info("Invoking producer");
         final int total_partitions = applicationProperties.partitions();
         for (int times = 0; times < 10000; times++) {
-            final int key = times % total_partitions;
-            producerService.sendMessage(String.valueOf(key), UUID.randomUUID().toString());
+            final String key = String.valueOf(times % total_partitions);
+            final String message = UUID.randomUUID().toString();
+            producerService.sendMessage(key, message);
         }
         return new ResponseEntity<>("Done with Publishing", HttpStatus.ACCEPTED);
     }
