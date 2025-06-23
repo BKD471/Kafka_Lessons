@@ -13,7 +13,7 @@ public interface IGlobalExceptionHandlerService {
     /**
      * This method handles any invalidation in request dto fields
      *
-     * @param exception - MethodArgumentNotValidException is being thrown
+     * @param exception - catches MethodArgumentNotValidException
      * @return ResponseEntity<Map<String, String>> - map containing error details
      * */
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -22,7 +22,7 @@ public interface IGlobalExceptionHandlerService {
     /**
      * This method handles any generic exception that's being thrown from codebase.
      *
-     * @param exception - Exception is being thrown
+     * @param exception - catches any generic Exception
      * @param webRequest - web request
      * @return ResponseEntity<Map<String, String>> - map containing error details
      * */
