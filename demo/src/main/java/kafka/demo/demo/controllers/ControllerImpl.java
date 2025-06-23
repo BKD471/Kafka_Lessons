@@ -26,14 +26,14 @@ public class ControllerImpl implements IControllerService {
 
 
     /**
-     * This method invokes the producer service, publishes 100 messages to topic
+     * This method invokes the producer service, publishes 10000 messages to topic
      *
      * @return ResponseEntity<String> - acknowledgement of send with status code
      */
     @Override
     public ResponseEntity<String> invokeProducer() {
         logger.info("Invoking producer");
-        for (int times = 0; times < 100; times++) {
+        for (int times = 0; times < 10000; times++) {
             final int key = times % 10;
             producerService.sendMessage(String.valueOf(key), UUID.randomUUID().toString());
         }
