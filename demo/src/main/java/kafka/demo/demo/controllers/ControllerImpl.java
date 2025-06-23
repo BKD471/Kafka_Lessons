@@ -49,9 +49,9 @@ public class ControllerImpl implements IControllerService {
 
 
     /**
-     * This method when invoked, creates and registers a listener which starts polling messages from topic
+     * This method when invoked, registers a listener which starts polling messages from topic
      *
-     * @param listenerDto - dto object for carry listener information like topic name or isStartImmediately
+     * @param listenerDto - dto object for listener information like topic name or isStartImmediately
      * @return ResponseEntity<String> - listenerId with status code
      */
     @Override
