@@ -16,7 +16,7 @@ to make it easily understandable with easy to follow hands on activities. Enjoy!
 
 ## _**To follow this lesson make sure you follow this steps**_
 
-1) Make Sure you have Docker Desktop & JDK 21 Installed on your machine.
+1) Make Sure you have Docker Desktop & JDK 17+ Installed on your machine.
 2) Get the docker compose file from this repo (I have shared) & set up a multi broker cluster in yr machine.
    Run the command "docker compose up -d" in the same dir as this docker compose file, 
    After every images are pulled & we set up containers and they are running, It will look like this
