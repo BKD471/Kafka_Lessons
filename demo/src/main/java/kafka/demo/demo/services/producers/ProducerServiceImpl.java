@@ -53,5 +53,6 @@ public class ProducerServiceImpl implements IProducerService {
                 // if producing to topic fails, configure a DLQ here to retry again.
             }
         });
+        kafkaProducerTemplate.flush();
     }
 }
