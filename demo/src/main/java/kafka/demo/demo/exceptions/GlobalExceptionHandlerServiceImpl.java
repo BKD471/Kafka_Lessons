@@ -3,8 +3,6 @@ package kafka.demo.demo.exceptions;
 import kafka.demo.demo.dto.ErrorDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -24,20 +22,20 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
      * This method handles any invalidation in request dto fields
      *
      * @param exception - catches MethodArgumentNotValidException
-     * @return ResponseEntity<Map<String, String>> - map containing error details
+     * @return Map<String, String> - map containing error details
      * */
     @Override
-    public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(
+    public Map<String, String> handleMethodArgumentNotValidException(
             final MethodArgumentNotValidException exception
     ) {
-        final Map<String, String> errors = new HashMap<>();
+        final Map<String, String> errorDetailsMap = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
             final String fieldName = ((FieldError) error).getField();
             final String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
+            errorDetailsMap.put(fieldName, errorMessage);
         });
         logger.error(String.format("<================ %s >", exception.getMessage()));
-        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        return errorDetailsMap;
     }
 
     /**
@@ -45,14 +43,14 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
      *
      * @param exception - catches any generic Exception
      * @param webRequest - web request
-     * @return ResponseEntity<ErrorDetails> - error details object with status code
+     * @return ErrorDetails - error details object
      * */
     @Override
-    public ResponseEntity<ErrorDetails> handleGenericException(
+    public ErrorDetails handleGenericException(
             final Exception exception,
             final WebRequest webRequest
     ) {
-        final ErrorDetails error =
+        final ErrorDetails errorDetails =
                 new ErrorDetails
                         (
                                 LocalTime.now(),
@@ -60,6 +58,6 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
                                 webRequest.getDescription(false)
                         );
         logger.error(String.format("<================ %s >", exception.getMessage()));
-        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+        return errorDetails;
     }
 }
