@@ -23,7 +23,7 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
      *
      * @param exception - catches MethodArgumentNotValidException
      * @param webRequest - web request
-     * @return Map<String, ErrorDetails> - map containing error details
+     * @return Map<String, ErrorDetails> - map containing error details for every dto fields
      * */
     @Override
     public Map<String, ErrorDetails> handleMethodArgumentNotValidException(
