@@ -20,7 +20,19 @@ public class KafkaConsumerConfig {
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
-        final Map<String, Object> consumerPropsMap = Map.ofEntries(
+        return new DefaultKafkaConsumerFactory<>(constructConsumerPropsMap());
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
+        final ConcurrentKafkaListenerContainerFactory<String, String> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+
+    private Map<String, Object> constructConsumerPropsMap() {
+        return Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
                         (
                                 ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -52,14 +64,5 @@ public class KafkaConsumerConfig {
                                 applicationProperties.valueDeSerializer().getName()
                         )
         );
-        return new DefaultKafkaConsumerFactory<>(consumerPropsMap);
-    }
-
-    @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
-        final ConcurrentKafkaListenerContainerFactory<String, String> factory =
-                new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(consumerFactory());
-        return factory;
     }
 }
