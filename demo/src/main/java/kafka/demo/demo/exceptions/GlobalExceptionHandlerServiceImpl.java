@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalTime;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
 
 @RestControllerAdvice
@@ -30,7 +30,7 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
             final MethodArgumentNotValidException exception,
             final WebRequest webRequest
     ) {
-        final Map<String, ErrorDetails> errorDetailsMap = new HashMap<>();
+        final ConcurrentHashMap<String, ErrorDetails> errorDetailsMap = new ConcurrentHashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
             final String fieldName = ((FieldError) error).getField();
             final String errorMessage = error.getDefaultMessage();
