@@ -15,12 +15,14 @@ public interface IGlobalExceptionHandlerService {
      * This method handles any invalidation in request dto fields
      *
      * @param exception - catches MethodArgumentNotValidException
-     * @return Map<String, String> - map containing error details
+     * @param webRequest - web request
+     * @return Map<String, ErrorDetails> - map containing error details
      * */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    Map<String, String> handleMethodArgumentNotValidException(
-            final MethodArgumentNotValidException exception
+    Map<String, ErrorDetails> handleMethodArgumentNotValidException(
+            final MethodArgumentNotValidException exception,
+            final WebRequest webRequest
     );
 
     /**
