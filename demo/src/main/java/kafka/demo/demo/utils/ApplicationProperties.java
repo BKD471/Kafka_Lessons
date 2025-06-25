@@ -56,7 +56,7 @@ public record ApplicationProperties(
         String compressionType,
 
         @NotNull
-        boolean isUncleanElection,
+        Boolean isUncleanElection,
 
         @Pattern(regexp = "^(1|0|-1|all)$",
                 message = "valid values are 1, 0, -1 or all")
