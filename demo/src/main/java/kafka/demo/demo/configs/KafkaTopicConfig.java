@@ -21,7 +21,21 @@ public class KafkaTopicConfig {
 
     @Bean
     public KafkaAdmin kafkaAdmin() {
-        final Map<String, Object> configsMap = Map.ofEntries(
+        return new KafkaAdmin(constructAdminConfigsMap());
+    }
+
+    @Bean
+    public NewTopic topic() {
+        return TopicBuilder
+                .name(applicationProperties.topicName())
+                .configs(constructTopicConfigsMap())
+                .partitions(applicationProperties.partitions())
+                .replicas(applicationProperties.replicationFactor())
+                .build();
+    }
+
+    private Map<String, Object> constructAdminConfigsMap() {
+        return Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
                         (
                                 AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -38,17 +52,6 @@ public class KafkaTopicConfig {
                                 applicationProperties.requestTimeOutMs()
                         )
         );
-        return new KafkaAdmin(configsMap);
-    }
-
-    @Bean
-    public NewTopic topic() {
-        return TopicBuilder
-                .name(applicationProperties.topicName())
-                .configs(constructTopicConfigsMap())
-                .partitions(applicationProperties.partitions())
-                .replicas(applicationProperties.replicationFactor())
-                .build();
     }
 
     private Map<String, String> constructTopicConfigsMap() {
