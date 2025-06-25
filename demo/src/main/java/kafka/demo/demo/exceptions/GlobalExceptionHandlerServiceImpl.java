@@ -22,17 +22,26 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
      * This method handles any invalidation in request dto fields
      *
      * @param exception - catches MethodArgumentNotValidException
-     * @return Map<String, String> - map containing error details
+     * @param webRequest - web request
+     * @return Map<String, ErrorDetails> - map containing error details
      * */
     @Override
-    public Map<String, String> handleMethodArgumentNotValidException(
-            final MethodArgumentNotValidException exception
+    public Map<String, ErrorDetails> handleMethodArgumentNotValidException(
+            final MethodArgumentNotValidException exception,
+            final WebRequest webRequest
     ) {
-        final Map<String, String> errorDetailsMap = new HashMap<>();
+        final Map<String, ErrorDetails> errorDetailsMap = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
             final String fieldName = ((FieldError) error).getField();
             final String errorMessage = error.getDefaultMessage();
-            errorDetailsMap.put(fieldName, errorMessage);
+            errorDetailsMap.put(
+                    fieldName,
+                    new ErrorDetails(
+                            LocalTime.now(),
+                            errorMessage,
+                            webRequest.getDescription(false)
+                    )
+            );
         });
         logger.error(String.format("<================ %s >", exception.getMessage()));
         return errorDetailsMap;
