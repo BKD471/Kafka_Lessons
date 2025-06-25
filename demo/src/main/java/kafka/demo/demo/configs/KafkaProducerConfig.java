@@ -22,7 +22,16 @@ public class KafkaProducerConfig {
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
-        final Map<String, Object> producerConfigPropsMap = Map.ofEntries(
+        return new DefaultKafkaProducerFactory<>(constructConfigPropsMap());
+    }
+
+    @Bean
+    public KafkaTemplate<String, String> kafkaTemplate() {
+        return new KafkaTemplate<>(producerFactory());
+    }
+
+    private Map<String, Object> constructConfigPropsMap() {
+        return Map.ofEntries(
                 new AbstractMap.SimpleEntry<>
                         (
                                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -54,11 +63,5 @@ public class KafkaProducerConfig {
                                 applicationProperties.retries()
                         )
         );
-        return new DefaultKafkaProducerFactory<>(producerConfigPropsMap);
-    }
-
-    @Bean
-    public KafkaTemplate<String, String> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
     }
 }
