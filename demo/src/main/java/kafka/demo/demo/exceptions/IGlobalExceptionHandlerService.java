@@ -16,7 +16,7 @@ public interface IGlobalExceptionHandlerService {
      *
      * @param exception - catches MethodArgumentNotValidException
      * @param webRequest - web request
-     * @return Map<String, ErrorDetails> - map containing error details
+     * @return Map<String, ErrorDetails> - map containing error details for every dto fields
      * */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
