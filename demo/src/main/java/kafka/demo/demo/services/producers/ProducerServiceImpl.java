@@ -26,12 +26,7 @@ public class ProducerServiceImpl implements IProducerService {
     private final KafkaTemplate<String, String> kafkaProducerTemplate;
     private final ApplicationProperties applicationProperties;
 
-    /**
-     * This method publishes payload to topic
-     *
-     * @param key     - the key of message, it guides which partition the message is written to within a topic
-     * @param message - the message which sis published to topic
-     */
+    
     @Override
     public void sendMessage(final String key, final String message) {
         final CompletableFuture<SendResult<String, String>> completableFuture =
