@@ -27,11 +27,6 @@ public class ControllerImpl implements IControllerService {
     private final AtomicLong id = new AtomicLong(0);
 
 
-    /**
-     * This method invokes the producer service, publishes 10000 messages to topic
-     *
-     * @return ResponseEntity<String> - acknowledgement of send with status code
-     */
     @Override
     public ResponseEntity<String> invokeProducer() {
         logger.info("Invoking producer");
@@ -48,12 +43,7 @@ public class ControllerImpl implements IControllerService {
     }
 
 
-    /**
-     * This method when invoked, registers a listener which starts polling messages from topic
-     *
-     * @param listenerDto - dto object for listener information like topic name or isStartImmediately
-     * @return ResponseEntity<String> - listenerId with status code
-     */
+
     @Override
     public ResponseEntity<String> createListener(final ListenerDTO listenerDto) {
         logger.info("Invoking Consumer");
