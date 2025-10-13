@@ -18,12 +18,8 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
     private static final Logger logger =
             LoggerFactory.getLogger(GlobalExceptionHandlerServiceImpl.class);
 
-    /**
-     * This method handles any invalidation in request dto fields
-     *
-     * @param exception - catches MethodArgumentNotValidException
-     * @return Map<String, String> - map containing error details
-     * */
+    
+
     @Override
     public Map<String, String> handleMethodArgumentNotValidException(
             final MethodArgumentNotValidException exception
@@ -38,13 +34,8 @@ public class GlobalExceptionHandlerServiceImpl implements IGlobalExceptionHandle
         return errorDetailsMap;
     }
 
-    /**
-     * This method handles any generic exception that's being thrown from codebase.
-     *
-     * @param exception - catches any generic Exception
-     * @param webRequest - web request
-     * @return ErrorDetails - error details object
-     * */
+    
+
     @Override
     public ErrorDetails handleGenericException(
             final Exception exception,
