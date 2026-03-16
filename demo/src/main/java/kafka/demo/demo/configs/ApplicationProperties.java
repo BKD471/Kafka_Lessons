@@ -1,4 +1,4 @@
-package kafka.demo.demo.utils;
+package kafka.demo.demo.configs;
 
 
 import jakarta.validation.constraints.Max;

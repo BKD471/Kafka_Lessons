@@ -1,6 +1,6 @@
 package kafka.demo.demo.services.consumers;
 
-import kafka.demo.demo.utils.ApplicationProperties;
+import kafka.demo.demo.configs.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 

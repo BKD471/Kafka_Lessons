@@ -1,7 +1,7 @@
 package kafka.demo.demo.services.producers;
 
 
-import kafka.demo.demo.utils.ApplicationProperties;
+import kafka.demo.demo.configs.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 
 

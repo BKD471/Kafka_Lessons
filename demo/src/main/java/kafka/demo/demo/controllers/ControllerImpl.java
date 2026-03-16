@@ -4,7 +4,7 @@ package kafka.demo.demo.controllers;
 import kafka.demo.demo.dto.ListenerDTO;
 import kafka.demo.demo.services.consumers.IKafkaListenerContainerManagerService;
 import kafka.demo.demo.services.producers.IProducerService;
-import kafka.demo.demo.utils.ApplicationProperties;
+import kafka.demo.demo.configs.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
